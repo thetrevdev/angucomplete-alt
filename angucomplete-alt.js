@@ -809,6 +809,13 @@
         return attrs.templateUrl || TEMPLATE_URL;
       },
       compile: function(tElement) {
+        //Temp Hack
+        //allow setting an attribute on the input
+        //gives ability to utilize a validation directive
+        if(tElement.attr('input-attribute'))
+          angular.element(tElement[0].querySelector('input')).attr(tElement.attr('input-attribute'),'');
+
+
         var startSym = $interpolate.startSymbol();
         var endSym = $interpolate.endSymbol();
         if (!(startSym === '{{' && endSym === '}}')) {
